@@ -1,0 +1,49 @@
+[alias]
+	co = checkout
+	# Logging aliases:
+	l = log --graph --pretty=format:'%C(auto)%h%d %s  %C(cyan)%an, %ar%C(auto)'
+	la = log --graph --pretty=format:'%C(auto)%h%d %s  %C(cyan)%an, %ar%C(auto)' --all
+	ls = log --graph --pretty=format:'%C(auto)%h%d %s  %C(cyan)%an, %ar%C(auto)' --simplify-by-decoration
+	las = log --graph --pretty=format:'%C(auto)%h%d %s  %C(cyan)%an, %ar%C(auto)' --all --simplify-by-decoration
+	# Other useful aliases:
+	unstage = reset HEAD
+	staged = diff --cached
+	unstaged = diff
+	current-branch = !git symbolic-ref -q HEAD | sed -e 's|^refs/heads/||'
+	# Usage: git track origin/feature-123-login-form
+	track = checkout -t
+	ctags = !.git/hooks/ctags
+[apply]
+	whitespace = warn
+[clean]
+	requireForce = false
+[color]
+	ui = auto
+[core]
+	excludesfile = /Users/devs/.gitignore_global
+	autocrlf = input
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[fetch]
+	prune = true
+[help]
+	autocorrect = 1
+[init]
+	templatedir = ~/.git_template
+[log]
+	decorate = short
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[push]
+	default = simple
+[remote "origin"]
+	push = HEAD
+[status]
+	submodule = 1
+[user]
+	name = Jake Griffin
+	email = jake.griffin@infusionsoft.com
+[pull]
+	ff = only
