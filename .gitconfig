@@ -19,6 +19,13 @@
 	requireForce = false
 [color]
 	ui = auto
+[color "diff"]
+	meta = cyan bold
+	frag = magenta bold
+[color "status"]
+	added = green
+	changed = yellow
+	untracked = red
 [core]
 	excludesfile = /Users/devs/.gitignore_global
 	autocrlf = input
