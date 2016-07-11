@@ -1,5 +1,7 @@
 [alias]
 	co = checkout
+	d = diff
+	ds = diff --stat
 	# Logging aliases:
 	l = log --graph --pretty=format:'%C(auto)%h%d %s  %C(cyan)%an, %ar%C(auto)'
 	la = log --graph --pretty=format:'%C(auto)%h%d %s  %C(cyan)%an, %ar%C(auto)' --all
@@ -35,7 +37,7 @@
 [fetch]
 	prune = true
 [help]
-	autocorrect = 1
+	autocorrect = -1
 [init]
 	templatedir = ~/.git_template
 [log]
