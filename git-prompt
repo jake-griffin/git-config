@@ -20,19 +20,19 @@ function parse_git_branch
         state=""
         remote=""
 
-        if [[ ! ${git_status} =~ "working directory clean" ]]
+        if [[ ${git_status} =~ "Untracked files" ]]
         then
             state="${RED}⚡ "
         fi
 
         if [[ ${git_status} =~ "Changes not staged for commit" ]]
         then
-            state="${YELLOW}∆"
+            state+="${YELLOW}∆"
         fi
 
         if [[ ${git_status} =~ "Changes to be committed" ]]
         then
-            state="${GREEN}∆"
+            state+="${GREEN}∆"
         fi
 
         if [[ ${git_status} =~ ${bisect_pattern} ]]
