@@ -3,10 +3,10 @@
 	d = diff
 	ds = diff --stat
 	# Logging aliases:
-	l = log --graph --pretty=format:'%C(auto)%h%d %s  %C(cyan)%an, %ar%C(auto)'
-	la = log --graph --pretty=format:'%C(auto)%h%d %s  %C(cyan)%an, %ar%C(auto)' --all
-	ls = log --graph --pretty=format:'%C(auto)%h%d %s  %C(cyan)%an, %ar%C(auto)' --simplify-by-decoration
-	las = log --graph --pretty=format:'%C(auto)%h%d %s  %C(cyan)%an, %ar%C(auto)' --all --simplify-by-decoration
+	l = log --graph --date=format:%c --pretty=format:'%C(auto)%h%d %s  %C(green)%an, %ar %C(cyan)(%ad) %C(auto)'
+	la = log --graph --date=format:%c --pretty=format:'%C(auto)%h%d %s  %C(green)%an, %ar %C(cyan)(%ad) %C(auto)' --all
+	ls = log --graph --date=format:%c --pretty=format:'%C(auto)%h%d %s  %C(green)%an, %ar %C(cyan)(%ad) %C(auto)' --simplify-by-decoration
+	las = log --graph --date=format:%c --pretty=format:'%C(auto)%h%d %s  %C(green)%an, %ar %C(cyan)(%ad) %C(auto)' --all --simplify-by-decoration
 	# Other useful aliases:
 	unstage = reset HEAD
 	staged = diff --cached
