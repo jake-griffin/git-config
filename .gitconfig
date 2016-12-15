@@ -12,9 +12,20 @@
 	staged = diff --cached
 	unstaged = diff
 	current-branch = !git symbolic-ref -q HEAD | sed -e 's|^refs/heads/||'
-	# Usage: git track origin/feature-123-login-form
-	track = checkout -t
-	ctags = !.git/hooks/ctags
+	cleanse = !git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -n 1 git branch -D
+	update = "! \
+	    CURRENT_BRANCH=`git current-branch`; \
+	    echo \"Current branch is $CURRENT_BRANCH\"; \
+	    git co -b dummy_branch 2> /dev/null; \
+	    for branch in `git branch -vv | egrep ': behind \\d*\\]' | awk '{print $1}'`; \
+	    do \
+	        git checkout $branch; \
+	        git merge --ff-only origin/$branch; \
+	    done; \
+	    git checkout $CURRENT_BRANCH; \
+	    git branch -d dummy_branch 2> /dev/null; \
+	"
+	vrm = !git tag -l | gsort -V
 [apply]
 	whitespace = warn
 [clean]
@@ -45,6 +56,8 @@
 [mergetool "sourcetree"]
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+[pull]
+	ff = only
 [push]
 	default = simple
 [remote "origin"]
@@ -54,5 +67,3 @@
 [user]
 	name = Jake Griffin
 	email = jake.griffin@infusionsoft.com
-[pull]
-	ff = only
