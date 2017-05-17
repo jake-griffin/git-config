@@ -9,7 +9,8 @@
 	las = log --graph --date=format:%c --pretty=format:'%C(auto)%h%d %s  %C(green)%an, %ar %C(cyan)(%ad) %C(auto)' --all --simplify-by-decoration
 	# Other useful aliases:
 	unstage = reset HEAD
-	staged = diff --cached
+	staged = diff --staged
+	cached = diff --cached
 	unstaged = diff
 	current-branch = !git symbolic-ref -q HEAD | sed -e 's|^refs/heads/||'
 	cleanse = !git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -n 1 git branch -D
@@ -26,6 +27,7 @@
 	    git branch -d dummy_branch 2> /dev/null; \
 	"
 	vrm = !git tag -l | gsort -V
+	vv = branch -vv
 [apply]
 	whitespace = warn
 [clean]
@@ -67,3 +69,5 @@
 [user]
 	name = Jake Griffin
 	email = jake.griffin@infusionsoft.com
+[credential]
+	helper = osxkeychain
