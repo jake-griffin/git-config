@@ -3,10 +3,10 @@
 	d = diff
 	ds = diff --stat
 	# Logging aliases:
-	l = log --graph --date=format:%c --pretty=format:'%C(auto)%h%d %s  %C(green)%an, %ar %C(cyan)(%ad) %C(auto)'
-	la = log --graph --date=format:%c --pretty=format:'%C(auto)%h%d %s  %C(green)%an, %ar %C(cyan)(%ad) %C(auto)' --all
-	ls = log --graph --date=format:%c --pretty=format:'%C(auto)%h%d %s  %C(green)%an, %ar %C(cyan)(%ad) %C(auto)' --simplify-by-decoration
-	las = log --graph --date=format:%c --pretty=format:'%C(auto)%h%d %s  %C(green)%an, %ar %C(cyan)(%ad) %C(auto)' --all --simplify-by-decoration
+	l = log --graph --date=format:%c --pretty=format:'%C(auto)%h%d %s%C(reset)  %C(green)\"%an\" <%ae>%C(reset) %C(cyan)%ar (%ad)%C(reset)'
+	la = log --graph --date=format:%c --pretty=format:'%C(auto)%h%d %s%C(reset)  %C(green)\"%an\" <%ae>%C(reset) %C(cyan)%ar (%ad)%C(reset)' --all
+	ls = log --graph --date=format:%c --pretty=format:'%C(auto)%h%d %s%C(reset)  %C(green)\"%an\" <%ae>%C(reset) %C(cyan)%ar (%ad)%C(reset)' --simplify-by-decoration
+	las = log --graph --date=format:%c --pretty=format:'%C(auto)%h%d %s%C(reset)  %C(green)\"%an\" <%ae>%C(reset) %C(cyan)%ar (%ad)%C(reset)' --all --simplify-by-decoration
 	# Other useful aliases:
 	unstage = reset HEAD
 	staged = diff --staged
@@ -28,6 +28,7 @@
 	"
 	vrm = !git tag -l | gsort -V
 	vv = branch -vv
+	dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%cr%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
 [apply]
 	whitespace = warn
 [clean]
@@ -42,8 +43,10 @@
 	changed = yellow
 	untracked = red
 [core]
-	excludesfile = /Users/devs/.gitignore_global
+	excludesfile = /Users/gjake/.gitignore_global
 	autocrlf = input
+	pager = less -FMRiX
+	whitespace = tab-in-indent
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
@@ -68,6 +71,8 @@
 	submodule = 1
 [user]
 	name = Jake Griffin
-	email = jake.griffin@infusionsoft.com
+	email = gjake@amazon.com
 [credential]
 	helper = osxkeychain
+[merge]
+	conflictStyle = diff3

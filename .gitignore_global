@@ -2,3 +2,6 @@
 .DS_Store
 *.pyc
 doc/tags
+*.iml
+build
+generated-src
