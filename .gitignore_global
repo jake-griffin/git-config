@@ -5,3 +5,6 @@ doc/tags
 *.iml
 build
 generated-src
+annotation-generated-src
+node_modules
+.idea

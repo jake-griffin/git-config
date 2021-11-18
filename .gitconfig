@@ -47,20 +47,22 @@
 	autocrlf = input
 	pager = less -FMRiX
 	whitespace = tab-in-indent
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+[diff]
+	tool = idea
+[difftool "idea"]
+	cmd = /usr/local/bin/idea diff \"$LOCAL\" \"$REMOTE\"
 [fetch]
 	prune = true
 [help]
 	autocorrect = -1
-[init]
-	templatedir = ~/.git_template
 [log]
 	decorate = short
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+[merge]
+	tool = idea
+	conflictStyle = diff3
+[mergetool "idea"]
+	cmd = /usr/local/bin/idea merge \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\"
+	trustExitCode = false
 [pull]
 	ff = only
 [push]
@@ -74,5 +76,3 @@
 	email = gjake@amazon.com
 [credential]
 	helper = osxkeychain
-[merge]
-	conflictStyle = diff3
