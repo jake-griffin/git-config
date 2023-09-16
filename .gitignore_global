@@ -8,3 +8,8 @@ generated-src
 annotation-generated-src
 node_modules
 .idea
+.gradle
+.classpath
+.factorypath
+.project
+.settings

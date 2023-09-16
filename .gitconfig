@@ -65,6 +65,7 @@
 	trustExitCode = false
 [pull]
 	ff = only
+	rebase = true
 [push]
 	default = simple
 [remote "origin"]
@@ -76,3 +77,8 @@
 	email = gjake@amazon.com
 [credential]
 	helper = osxkeychain
+[rerere]
+	enabled = true
+[commit]
+	template = /Users/gjake/.git-commit-template.txt
+	cleanup = strip
