@@ -18,6 +18,7 @@
 	# Branch aliases:
 	vv = branch -vv
 	cleanup = !git co master | git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -n 1 git branch -D
+	worktree-cleanup = "!f() { git worktree list --porcelain | awk '/^worktree / { path = substr($0, 10) } /^detached$/ { print path }' | while IFS= read -r path; do echo \"Removing detached worktree: $path\"; git worktree remove \"$path\"; done; }; f"
 	
 	# Update all behind branches
 	update = "! \
