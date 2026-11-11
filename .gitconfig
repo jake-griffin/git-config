@@ -24,14 +24,14 @@
 	update = "! \
            CURRENT_BRANCH=`git current-branch`; \
            echo \"Current branch is $CURRENT_BRANCH\"; \
-           git co -b dummy_branch; \
+           git co -b dummy_branch 2> /dev/null; \
            for branch in `git branch -vv | egrep ': behind \\d*\\]' | awk '{print $1}'`; \
            do \
               git checkout $branch; \
               git merge --ff-only origin/$branch; \
            done; \
            git checkout $CURRENT_BRANCH; \
-           git branch -d dummy_branch;"
+           git branch -d dummy_branch 2> /dev/null;"
 	
 	# Other useful aliases:
 	unstage = reset HEAD
@@ -59,12 +59,11 @@
 [credential]
 	helper = osxkeychain
 [diff]
-	tool = bcomp
+	tool = idea
 [difftool]
 	prompt = false
-[difftool "bcomp"]
-	trustExitCode = true
-	cmd = "/usr/local/bin/bcomp" "$LOCAL" "$REMOTE"
+[difftool "idea"]
+	cmd = /usr/local/bin/idea diff \"$LOCAL\" \"$REMOTE\"
 [fetch]
 	prune = true
 [help]
@@ -72,18 +71,23 @@
 [log]
 	decorate = short
 [merge]
-	tool = bcomp
+	tool = idea
+	conflictStyle = zdiff3
 [mergetool]
 	prompt = false
-[mergetool "bcomp"]
-	trustExitCode = true
-	cmd = "/usr/local/bin/bcomp" "$LOCAL" "$REMOTE" "$BASE" "$MERGED"
+[mergetool "idea"]
+	cmd = /usr/local/bin/idea merge \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\"
+	trustExitCode = false
 [pull]
-	ff = only
+	rebase = true
 [push]
 	default = simple
+[rebase]
+	autoStash = true
 [remote "origin"]
 	push = HEAD
+[rerere]
+	enabled = true
 [status]
 	submodule = 1
 [user]
